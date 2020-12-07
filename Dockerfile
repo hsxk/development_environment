@@ -24,7 +24,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && git clone https://github.com/vim/vim.git \
     && cd vim \
     && ./configure --with-features=huge \
-                   --enable-gui=gtk2 \
                    --enable-python3interp=yes  \
                    --with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/ \
                    --enable-cscope --prefix=/usr \

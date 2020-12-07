@@ -17,8 +17,20 @@ Plugin 'preservim/nerdtree'
 "Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 Plugin 'w0rp/ale'
 
+"lean & mean status/tabline for vim that's light as air
+Plugin 'vim-airline/vim-airline'
+
 "An up-to-date Vim syntax for PHP (7.x supported)
 Plugin 'stanangeloff/php.vim'
+
+"precision colorscheme for the vim text editor
+Plugin 'altercation/vim-colors-solarized'
+
+"quoting/parenthesizing made simple
+Plugin 'tpope/vim-surround'
+
+"A Git wrapper so awesome, it should be illegal
+Plugin 'tpope/vim-fugitive'
 
 "a code-completion engine for Vim
 Plugin 'ycm-core/YouCompleteMe'
@@ -33,6 +45,7 @@ filetype plugin indent on    " required by Vundle
 
 "open a NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
+let NERDTreeShowHidden=1
 
 " 禁止生成 swap 恢复文件
 " 早期计算机经常崩溃，vim 会自动创建一个 .swp 结尾的文件
@@ -102,10 +115,8 @@ set wildmenu
 
 "设置颜色主题
 syntax enable
-colorscheme gruvbox
-set t_Co=256
+colorscheme solarized
 set background=dark
-let g:ligthline = { 'colorscheme': 'gruvbox' }
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
