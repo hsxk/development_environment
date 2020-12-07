@@ -27,8 +27,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
                    --with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/ \
                    --enable-cscope --prefix=/usr \
     && make VIMRUNTIMEDIR=/usr/share/vim/vim82 \
-    && make install \
-    && vim +PluginInstall +qall \
+    && make install
+RUN vim +PluginInstall +qall \
     && cd ~/.vim/bundle/YouCompleteMe/ \
     && git submodule sync --recursive \
     && git submodule update --init --recursive \
