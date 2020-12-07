@@ -37,4 +37,4 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt autoremove -y \
     && apt remove --purge libtinfo-dev build-essential cmake -y \
     && rm -rf /var/lib/apt/lists/* \
-    && rm -rf /home/vim 
+    && rm -rf /home/vim
