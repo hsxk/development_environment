@@ -12,7 +12,8 @@ ADD .bashrc ~/.bashrc
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt-get update -y  \
-    && apt install -y build-essential python3-dev mono-complete golang nodejs default-jdk npm wget git \
+    && apt-get install git -y \
+    && apt install -y build-essential python3-dev mono-complete golang nodejs default-jdk npm wget \
     && apt install libtinfo-dev locales cmake  -y --fix-missing \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
@@ -28,7 +29,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
                    --enable-cscope --prefix=/usr \
     && make VIMRUNTIMEDIR=/usr/share/vim/vim82 \
     && make install
-RUN vim +PluginInstall +qall \
+RUN vim +PluginInstall +qall\
     && cd ~/.vim/bundle/YouCompleteMe/ \
     && git submodule sync --recursive \
     && git submodule update --init --recursive \
