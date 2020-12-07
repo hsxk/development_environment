@@ -17,14 +17,17 @@ Plugin 'preservim/nerdtree'
 "Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 Plugin 'w0rp/ale'
 
+Plugin 'morhetz/gruvbox'
+
 "lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'Lokaltog/powerline'
+
+Plugin 'majutsushi/tagbar'
 
 "An up-to-date Vim syntax for PHP (7.x supported)
 Plugin 'stanangeloff/php.vim'
-
-"precision colorscheme for the vim text editor
-Plugin 'altercation/vim-colors-solarized'
 
 "quoting/parenthesizing made simple
 Plugin 'tpope/vim-surround'
@@ -46,6 +49,25 @@ filetype plugin indent on    " required by Vundle
 "open a NERDTree automatically when vim starts up
 autocmd vimenter * NERDTree
 let NERDTreeShowHidden=1
+
+nmap <F8> :TagbarToggle<CR>
+
+let g:ale_sign_column_always = 1
+let g:ale_set_highlights = 0
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+let g:ale_statusline_format = ['✗ %d', '⚡ %d', '✔ OK']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+nmap <Leader>s :ALEToggle<CR>
+nmap <Leader>d :ALEDetail<CR>
+set laststatus=2
+let g:airline_theme='bubblegum'
+
+let g:airline#extensions#tabline#enabled = 1
 
 " 禁止生成 swap 恢复文件
 " 早期计算机经常崩溃，vim 会自动创建一个 .swp 结尾的文件
@@ -115,8 +137,11 @@ set wildmenu
 
 "设置颜色主题
 syntax enable
-colorscheme solarized
+set t_Co=256
+colorscheme gruvbox
 set background=dark
+let g:ligthline = { 'colorscheme': 'gruvbox' }
+
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'

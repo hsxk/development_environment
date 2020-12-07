@@ -8,7 +8,6 @@ ARG GITEMAIL="haokexin1214@gmail.com"
 ENV TZ=Asia/Tokyo
 
 ADD .vimrc ~/.vimrc
-ADD gruvbox.vim /usr/share/vim/vim82/colors/gruvbox.vim
 ADD .bashrc ~/.bashrc
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
