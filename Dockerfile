@@ -12,8 +12,7 @@ ADD .bashrc ~/.bashrc
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt-get update -y  \
-    && apt-get install git -y \
-    && apt install -y build-essential python3-dev mono-complete golang nodejs default-jdk npm wget \
+    && apt install -y build-essential python3-dev mono-complete golang nodejs default-jdk npm wget git ctags \
     && apt install libtinfo-dev locales cmake  -y --fix-missing \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
@@ -24,7 +23,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && git clone https://github.com/vim/vim.git \
     && cd vim \
     && ./configure --with-features=huge \
-                   --enable-gui=gtk2 \
                    --enable-python3interp=yes  \
                    --with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/ \
                    --enable-cscope --prefix=/usr \

@@ -17,8 +17,6 @@ Plugin 'preservim/nerdtree'
 "Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support
 Plugin 'w0rp/ale'
 
-Plugin 'morhetz/gruvbox'
-
 "lean & mean status/tabline for vim that's light as air
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -65,9 +63,12 @@ nmap sn <Plug>(ale_next_wrap)
 nmap <Leader>s :ALEToggle<CR>
 nmap <Leader>d :ALEDetail<CR>
 set laststatus=2
-let g:airline_theme='bubblegum'
 
+nmap <C-p> <Plug>AirlineSelectPrevTab
+nmap <C-n> <Plug>AirlineSelectNextTab
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#formatter = 'default'
 
 " 禁止生成 swap 恢复文件
 " 早期计算机经常崩溃，vim 会自动创建一个 .swp 结尾的文件
@@ -145,9 +146,6 @@ let g:ligthline = { 'colorscheme': 'gruvbox' }
 
 " 设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
-
-"开启粘贴模式
-set paste
 
 "显示空格和TAB键
 set listchars=tab:>-,trail:-
