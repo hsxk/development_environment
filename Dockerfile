@@ -1,23 +1,27 @@
-FROM ubuntu:latest
-
+FROM ubuntu:latest as base
 MAINTAINER haokexin1214@gmail.com
-
-ARG GITUSER=haokexin
-ARG GITEMAIL=haokexin1214@gmail.com
-
 ENV TZ=Asia/Tokyo
-
-ADD .vimrc ~/.vimrc
 ADD .bashrc ~/.bashrc
-ADD gruvbox.vim /usr/share/vim/vim82/colors/gruvbox.vim
-
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt-get update -y  \
     && apt install -y build-essential python3-dev mono-complete golang nodejs default-jdk npm wget git ctags \
     && apt install libtinfo-dev locales cmake  -y --fix-missing \
     && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
-    && git config --global user.email $GITEMAIL \
+    && localedef -i zh_CN -c -f UTF-8 -A /usr/share/locale/locale.alias zh_CN.UTF-8 \
+	&& apt-get clean -y \
+    && apt autoremove -y
+ 
+FROM base as git
+
+ARG GITUSER=haokexin
+ARG GITEMAIL=haokexin1214@gmail.com
+
+ADD .vimrc ~/.vimrc
+ADD gruvbox.vim /usr/share/vim/vim82/colors/gruvbox.vim
+
+
+
+&& git config --global user.email $GITEMAIL \
     && git config --global user.name $GITUSER \
     && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
     && cd /home  \
