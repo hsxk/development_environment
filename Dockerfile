@@ -9,6 +9,7 @@ ENV TZ=Asia/Tokyo
 
 ADD .vimrc ~/.vimrc
 ADD .bashrc ~/.bashrc
+ADD gruvbox.vim /usr/share/vim/vim82/colors/gruvbox.vim
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt-get update -y  \
