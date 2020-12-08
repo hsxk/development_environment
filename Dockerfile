@@ -11,17 +11,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
 	&& apt-get clean -y \
     && apt autoremove -y
  
-FROM base as git
-
+FROM base as vim
 ARG GITUSER=haokexin
 ARG GITEMAIL=haokexin1214@gmail.com
-
 ADD .vimrc ~/.vimrc
 ADD gruvbox.vim /usr/share/vim/vim82/colors/gruvbox.vim
-
-
-
-&& git config --global user.email $GITEMAIL \
+RUN git config --global user.email $GITEMAIL \
     && git config --global user.name $GITUSER \
     && git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
     && cd /home  \
@@ -38,8 +33,7 @@ ADD gruvbox.vim /usr/share/vim/vim82/colors/gruvbox.vim
     && git submodule sync --recursive \
     && git submodule update --init --recursive \
     && python3 ~/.vim/bundle/YouCompleteMe/install.py --all \
-    && apt-get clean -y \
-    && apt autoremove -y \
     && apt remove --purge libtinfo-dev build-essential cmake -y \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /home/vim
+CMD ["/bin/bash"]
