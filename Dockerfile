@@ -1,8 +1,8 @@
 FROM ubuntu:latest as base
 MAINTAINER haokexin1214@gmail.com
 ENV TZ=Asia/Tokyo
-ENV HOME=/root/
-ADD .bashrc /root/.bashrc
+ENV HOME=/root
+ADD .bashrc ~/.bashrc
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt-get update -y \
 	&& apt install -y build-essential python3-dev mono-complete golang nodejs default-jdk npm wget git ctags \
@@ -29,12 +29,12 @@ RUN git config --global user.email $GITEMAIL \
 	&& rm -rf vim
 
 FROM vim as plugin
-ADD .vimrc /root/.vimrc
-RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim \
+ADD .vimrc ~/.vimrc
+RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
 	&& vim +PluginInstall +qall \
-	&& cd /root/.vim/bundle/YouCompleteMe \
+	&& cd ~/.vim/bundle/YouCompleteMe \
 	&& git submodule sync --recursive \
 	&& git submodule update --init --recursive \
-	&& python3 /root/.vim/bundle/YouCompleteMe/install.py --all \
+	&& python3 ~/.vim/bundle/YouCompleteMe/install.py --all \
 	&& apt remove --purge libtinfo-dev build-essential cmake wget -y \
 CMD ["/bin/bash"]
