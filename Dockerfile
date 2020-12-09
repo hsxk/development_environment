@@ -28,6 +28,7 @@ RUN git config --global user.email $GITEMAIL \
 	&& rm -rf vim
 
 FROM vim as plugin
+ENV HOME=/root
 ADD .vimrc ~/.vimrc
 RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
     && vim +PluginInstall +qall \
