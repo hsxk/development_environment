@@ -28,13 +28,12 @@ RUN git config --global user.email $GITEMAIL \
 	&& rm -rf vim
 
 FROM vim as plugin
-ENV HOME=/root
 ADD .vimrc ~/.vimrc
-RUN git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim \
-    && vim +PluginInstall +qall \
-	&& cd ~/.vim/bundle/YouCompleteMe \
+RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vundle.vim \
+	&& vim +PluginInstall +qall \
+	&& cd /root/.vim/bundle/YouCompleteMe \
 	&& git submodule sync --recursive \
 	&& git submodule update --init --recursive \
-	&& python3 ~/.vim/bundle/YouCompleteMe/install.py --all \
+	&& python3 root/.vim/bundle/YouCompleteMe/install.py --all \
 	&& apt remove --purge libtinfo-dev build-essential cmake wget -y \
 CMD ["/bin/bash"]
