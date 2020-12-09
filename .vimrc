@@ -43,6 +43,7 @@ colorscheme gruvbox
 set background=dark
 let g:ligthline={'colorscheme':'gruvbox'}
 
+let mapleader="\<Space>"
 set noswapfile
 set encoding=utf-8
 set fileencodings=utf-8,gb18030

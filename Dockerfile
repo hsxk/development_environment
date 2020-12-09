@@ -17,6 +17,7 @@ ARG GITEMAIL=haokexin1214@gmail.com
 RUN git config --global user.email $GITEMAIL \
     && git config --global user.name $GITUSER \
 	&& git clone https://github.com/vim/vim.git \
+	&& cd vim
 	&& ./configure --with-features=huge \
 	               --enable-python3interp=yes \
 				   --with-python3-config-dir=/usr/lib/python3.8/config-3.8-x86_64-linux-gnu/ \
