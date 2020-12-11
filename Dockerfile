@@ -37,5 +37,7 @@ RUN git clone https://github.com/VundleVim/Vundle.vim.git /root/.vim/bundle/Vund
 	&& git submodule sync --recursive \
 	&& git submodule update --init --recursive \
 	&& python3 /root/.vim/bundle/YouCompleteMe/install.py --all \
-	&& apt remove --purge libtinfo-dev build-essential cmake wget -y
+	&& apt remove --purge libtinfo-dev build-essential cmake wget -y \
+	&& find /root/.vim/ -name ".git" | xargs rm -Rf \
+	&& rm -rf /root/.vim/bundle/YouCompleteMe/third_party/ycmd/clang_archives
 CMD ["/bin/bash"]
