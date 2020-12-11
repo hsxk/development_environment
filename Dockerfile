@@ -1,7 +1,6 @@
 FROM ubuntu:latest as base
 MAINTAINER haokexin1214@gmail.com
 ENV TZ=Asia/Tokyo
-ENV HOME=/root
 ADD .bashrc /root/.bashrc
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone \
     && apt-get update -y \

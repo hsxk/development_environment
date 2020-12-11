@@ -62,3 +62,4 @@ set wildmenu
 set listchars=tab:>-,trail:-
 set ruler
 set confirm
+set vb t_vb=
