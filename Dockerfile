@@ -6,8 +6,8 @@ ENV PATH /bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin
 # add user
 RUN : \
     && apk add --no-cache --virtual .user shadow \
-    && groupadd -g 1000 www \
-    && useradd -d /var/lib/www -s /bin/nologin -g www -M -u 1000 httpd \
+    && groupadd -g 1000 nginx\
+    && useradd -s /bin/nologin -g nginx -M -u 1000 nginx \
     && apk del --purge .user \
     && : # END of RUN
 
@@ -186,8 +186,8 @@ RUN : \
         --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp \
         --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp \
         --http-scgi-temp-path=/var/cache/nginx/scgi_temp \
-        --user=httpd \
-        --group=www \
+        --user=nginx\
+        --group=nginx\
         --with-http_ssl_module \
         --with-http_realip_module \
         --with-http_addition_module \
@@ -277,7 +277,7 @@ RUN : \
         /etc/nginx/conf.d \
         /var/cache/nginx \
         /var/log/nginx  \
-    && chown -R httpd:www /etc/nginx \
+    && chown -R nginx:nginx /etc/nginx \
         /var/www/html \
         /var/cache/nginx \
         /var/log/nginx \
@@ -314,7 +314,7 @@ EXPOSE 8443
 
 VOLUME /etc/letsencrypt
 
-USER httpd
+USER nginx
 COPY files/docker-entrypoint.sh /
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 CMD [ "/usr/sbin/nginx", "-g", "daemon off;" ]

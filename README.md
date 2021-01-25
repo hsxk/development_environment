@@ -1,16 +1,16 @@
-# kusanagi-nginx
+# nginx
 
-Nginx Web Server( for KUSANAGI Runs on Docker )
+Nginx Web Server
 
 # Versions (tags)
 
 - latest
-- 1.19.5-r0
+- nginx-1.19.6
 
 # Image Content
 
-- Alpine:3.12.1
-- nginx-1.19.5
+- Alpine:latest
+- nginx-1.19.6
 - headers-more-nginx-module 0.33
 - lua-nginx-module 0.10.19
 - lua_resty_core_version 0.1.21
